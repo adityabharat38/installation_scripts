@@ -5,9 +5,6 @@ sudo apt install docker.io -y
 sudo systemctl restart docker
 # allow permissions for docker and jenkins user
 sudo usermod -aG docker ubuntu
-sudo usermod -aG docker jenkins
-#restart jenkins to get permissions applied
-sudo sytemctl restart jenkins
 # restart server for permissions to get applied
 echo "restart the server once"
 sudo apt install docker-compose -y
@@ -27,4 +24,7 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
 sudo apt-get update -y
 sudo apt-get install jenkins -y
 
-
+# give jekins user permission to run docker commands
+sudo usermod -aG docker jenkins
+#restart jenkins to get permissions applied
+sudo systemctl restart jenkins
